@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Friend Finder</title>
+    <!-- Latest compiled and minified CSS & JS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://code.jquery.com/jquery.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+
+    <style>
+        footer {
+            margin-top: 10px;
+        }
+    </style>
+
+
+</head>
+
+<body>
+
+    <div class="container">
+        <h1>Survey Questions</h1>
+        <hr>
+        <div class="row">
+            <div class="col-lg-12">
+                <form>
+                    <div class="card">
+
+                        <div class="card-header">
+                            About You
+                        </div>
+
+                        <div class="card-body">
+                            <div class="form-group">
+                                <label for="name">Name (Required)</label>
+                                <input type="text" class="form-control" id="name">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="photo">Link to Photo (Required)</label>
+                                <input type="text" class="form-control" id="photo">
+                            </div>
+                        </div>
+
+                    </div>
+                    <br>
+
+                    <div class="card">
+
+                        <div class="card-header">
+                            Questions
+                        </div>
+
+                        <div class="card-body">
+                            <div>
+                                <label for="q0">1) You would rather attend a sporting event than a play.</label><br>
+
+                                <select id="q0">
+                                    <option value="0"></option>
+                                    <option value="1">1 Strongly Agree</option>
+                                    <option value="2">2 Agree</option>
+                                    <option value="3">3 Neutral</option>
+                                    <option value="4">4 Disagree</option>
+                                    <option value="5">5 Strongly Disagree</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label for="q1">2) You would like to see legislation to further restrict gun ownership.</label><br>
+
+                                <select id="q1">
+                                    <option value="0"></option>
+                                    <option value="1">1 Strongly Agree</option>
+                                    <option value="2">2 Agree</option>
+                                    <option value="3">3 Neutral</option>
+                                    <option value="4">4 Disagree</option>
+                                    <option value="5">5 Strongly Disagree</option>
+                                </select>
+                            </div>                           
+                            
+                        </div>
+
+                    </div>
+                    <br>
+
+                    <div class="text-left">
+                        <button type="submit" class="btn btn-primary btn-lg btn-block" id="survey-btn">Submit</button>
+                    </div>
+                    
+                </form>
+
+            <footer>
+                <p>
+                    <a href="/api/friends">API Friends List </a>
+                    |
+                    <a href="https://github.com/amcaron1/Friend_Finder"> GitHub Repo</a>
+                </p>
+            </footer>
+
+            </div>
+        </div>
+    </div>
+
+    
+
+    <div class="modal" tabindex="-1" role="dialog" id="errorModal">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Friend Finder</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p>Please fill out all fields and answer all questions before submitting</p>
+            </div>
+            <div class="modal-footer">
+            </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal" tabindex="-1" role="dialog" id="matchModal">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Best Match</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <h2 id="matchName"></h2>
+                <img id="matchPhoto" src="" alt="">
+            </div>
+            <div class="modal-footer">
+            </div>
+            </div>
+        </div>
+    </div>
+
+    <script type="text/javascript">
+
+        $("#survey-btn").on("click", function(event) {
+        event.preventDefault();
+
+            console.log($("#q1").val());
+            
+
+            var validData = true;
+            var userData = {
+                name: "",
+                photo: "",
+                scores: []
+            }
+
+            userData.name = $("#name").val().trim();
+            userData.photo = $("#photo").val().trim();
+
+            console.log(userData.name);
+
+            if (userData.name == "" || userData.phone == "") {
+                validData = false;
+                console.log("error modal");
+                $("#errorModal").modal("show");
+            }
+            else {
+                
+                for (var i = 0; i < 2; i++) {
+                    if ($("#q"+i).val() == 0) {
+                        validData = false;
+                        $("#errorModal").modal("show");
+                        break;
+                    }
+                    else {
+                        userData.scores.push($("#q"+i).val());
+                    }
+                }
+            }
+
+            console.log(userData);
+            
+            if (validData) {
+                $.post("/api/friends", userData)
+                .then(function(data) {
+
+                    console.log(data);
+                    $("#matchName").text(data.name);
+                    $("#matchPhoto").attr("src", data.photo);
+                    $("#matchModal").modal("show");
+                })
+            }
+        })
+    </script>
+</body>
+
+</html>
