@@ -1,20 +1,20 @@
-// var express = require("express");
 // Dependencies
 var friends = require("../data/friends.js");
 
 module.exports = function(app) {
     
-// Displays all friends
-app.get("/api/friends", function(req, res) {
-    return res.json(friends);
-  });
+    // Displays all of the friends
+    app.get("/api/friends", function(req, res) {
+        return res.json(friends);
+    });
 
-// Gets the new friend data, call the findFriend fucntion, and sends back the best match
-app.post("/api/friends", function(req, res) {
-    var index = findFriend(req.body);
-    return res.json(friends[index]);
+    // Gets the new friend data, calls the findFriend fucntion, and sends back the best match
+    app.post("/api/friends", function(req, res) {
+        var index = findFriend(req.body);
+        return res.json(friends[index]);
 });}
 
+// Determines the best friend match
 function findFriend(newFriend) {
     var score = 0;
     var lowScore = 100;

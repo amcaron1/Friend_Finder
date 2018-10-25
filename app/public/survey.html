@@ -262,7 +262,7 @@
                 scores: []
             }
             
-            // Get user name and phono
+            // Get user name and photo
             userData.name = $("#name").val().trim();
             userData.photo = $("#photo").val().trim();
             
@@ -293,7 +293,7 @@
                 $.post("/api/friends", userData)
                 .then(function(data) {
 
-                    // Put the best match name and photo on the modal and display it
+                    // Put the best match name and photo on the  mathch modal and display it
                     $("#matchName").text(data.name);
                     $("#matchPhoto").attr("src", data.photo);
                     $("#matchModal").modal("show");
