@@ -11,8 +11,11 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
 
     <style>
-        footer {
-            margin-top: 10px;
+        .question {
+            margin-bottom: 10px;
+        }
+        #survey-btn {
+            margin-bottom: 10px;
         }
     </style>
 
@@ -55,10 +58,11 @@
                         </div>
 
                         <div class="card-body">
-                            <div>
-                                <label for="q0">1) You would rather attend a sporting event than a play.</label><br>
 
-                                <select id="q0">
+                            <div>
+                                <label for="q0">1) You would rather go to a sporting event than a play.</label><br>
+
+                                <select id="q0" class="question">
                                     <option value="0"></option>
                                     <option value="1">1 Strongly Agree</option>
                                     <option value="2">2 Agree</option>
@@ -68,9 +72,9 @@
                                 </select>
                             </div>
                             <div>
-                                <label for="q1">2) You would like to see legislation to further restrict gun ownership.</label><br>
+                                <label for="q1">2) You would rather watch the Blues Brothers than the Sound of Music.</label><br>
 
-                                <select id="q1">
+                                <select id="q1" class="question">
                                     <option value="0"></option>
                                     <option value="1">1 Strongly Agree</option>
                                     <option value="2">2 Agree</option>
@@ -80,6 +84,110 @@
                                 </select>
                             </div>                           
                             
+                            <div>
+                                <label for="q2">3) You like just as much idle time as sightseeing time when on vacation.</label><br>
+
+                                <select id="q2" class="question">
+                                    <option value="0"></option>
+                                    <option value="1">1 Strongly Agree</option>
+                                    <option value="2">2 Agree</option>
+                                    <option value="3">3 Neutral</option>
+                                    <option value="4">4 Disagree</option>
+                                    <option value="5">5 Strongly Disagree</option>
+                                </select>
+                            </div>
+                            
+                            <div>
+                                <label for="q3">4) You think of yourself as a centrist politically.</label><br>
+
+                                <select id="q3" class="question">
+                                    <option value="0"></option>
+                                    <option value="1">1 Strongly Agree</option>
+                                    <option value="2">2 Agree</option>
+                                    <option value="3">3 Neutral</option>
+                                    <option value="4">4 Disagree</option>
+                                    <option value="5">5 Strongly Disagree</option>
+                                </select>
+                            </div>                           
+                                
+                            <div>
+                                <label for="q4">5) You have no trouble saying what is on your mind.</label><br>
+
+                                <select id="q4" class="question">
+                                    <option value="0"></option>
+                                    <option value="1">1 Strongly Agree</option>
+                                    <option value="2">2 Agree</option>
+                                    <option value="3">3 Neutral</option>
+                                    <option value="4">4 Disagree</option>
+                                    <option value="5">5 Strongly Disagree</option>
+                                </select>
+                            </div>        
+                            
+                            <div>
+                                <label for="q5">6) You would rather visit a national park than a big city.</label><br>
+
+                                <select id="q5" class="question">
+                                    <option value="0"></option>
+                                    <option value="1">1 Strongly Agree</option>
+                                    <option value="2">2 Agree</option>
+                                    <option value="3">3 Neutral</option>
+                                    <option value="4">4 Disagree</option>
+                                    <option value="5">5 Strongly Disagree</option>
+                                </select>
+                            </div>                           
+                                
+                            <div>
+                                <label for="q6">7) You think rap music is God's way of punishing us.</label><br>
+
+                                <select id="q6" class="question">
+                                    <option value="0"></option>
+                                    <option value="1">1 Strongly Agree</option>
+                                    <option value="2">2 Agree</option>
+                                    <option value="3">3 Neutral</option>
+                                    <option value="4">4 Disagree</option>
+                                    <option value="5">5 Strongly Disagree</option>
+                                </select>
+                            </div>     
+
+                             <div>
+                                <label for="q7">8) You think Stephen Colbert is the funniest late night host.</label><br>
+
+                                <select id="q7" class="question">
+                                    <option value="0"></option>
+                                    <option value="1">1 Strongly Agree</option>
+                                    <option value="2">2 Agree</option>
+                                    <option value="3">3 Neutral</option>
+                                    <option value="4">4 Disagree</option>
+                                    <option value="5">5 Strongly Disagree</option>
+                                </select>
+                            </div>     
+
+                            <div>
+                                <label for="q8">9) You believe in the dessert stomach.</label><br>
+
+                                <select id="q8" class="question">
+                                    <option value="0"></option>
+                                    <option value="1">1 Strongly Agree</option>
+                                    <option value="2">2 Agree</option>
+                                    <option value="3">3 Neutral</option>
+                                    <option value="4">4 Disagree</option>
+                                    <option value="5">5 Strongly Disagree</option>
+                                </select>
+                            </div>                           
+                            
+                            <div>
+                                <label for="q9">10) You think coding rocks.</label><br>
+
+                                <select id="q9" class="question">
+                                    <option value="0"></option>
+                                    <option value="1">1 Strongly Agree</option>
+                                    <option value="2">2 Agree</option>
+                                    <option value="3">3 Neutral</option>
+                                    <option value="4">4 Disagree</option>
+                                    <option value="5">5 Strongly Disagree</option>
+                                </select>
+                            </div>                           
+                                
                         </div>
 
                     </div>
@@ -91,20 +199,19 @@
                     
                 </form>
 
-            <footer>
-                <p>
-                    <a href="/api/friends">API Friends List </a>
-                    |
-                    <a href="https://github.com/amcaron1/Friend_Finder"> GitHub Repo</a>
-                </p>
-            </footer>
+                <footer>
+                    <p>
+                        <a href="/api/friends">API Friends List </a>
+                        |
+                        <a href="https://github.com/amcaron1/Friend_Finder"> GitHub Repo</a>
+                    </p>
+                </footer>
 
             </div>
         </div>
     </div>
 
-    
-
+    <!-- Error modal -->
     <div class="modal" tabindex="-1" role="dialog" id="errorModal">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
@@ -123,6 +230,7 @@
         </div>
     </div>
 
+    <!-- Match modal -->
     <div class="modal" tabindex="-1" role="dialog" id="matchModal">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
@@ -147,29 +255,28 @@
         $("#survey-btn").on("click", function(event) {
         event.preventDefault();
 
-            console.log($("#q1").val());
-            
-
             var validData = true;
             var userData = {
                 name: "",
                 photo: "",
                 scores: []
             }
-
+            
+            // Get user name and phono
             userData.name = $("#name").val().trim();
             userData.photo = $("#photo").val().trim();
-
-            console.log(userData.name);
-
+            
+            // If user name or photo are blank, display error modal
             if (userData.name == "" || userData.phone == "") {
                 validData = false;
                 console.log("error modal");
                 $("#errorModal").modal("show");
             }
+
+            // If any of the questions are blank, display the error modal
             else {
                 
-                for (var i = 0; i < 2; i++) {
+                for (var i = 0; i < 10; i++) {
                     if ($("#q"+i).val() == 0) {
                         validData = false;
                         $("#errorModal").modal("show");
@@ -180,14 +287,13 @@
                     }
                 }
             }
-
-            console.log(userData);
             
+            // If the data is valid, send it to the server to find best match
             if (validData) {
                 $.post("/api/friends", userData)
                 .then(function(data) {
 
-                    console.log(data);
+                    // Put the best match name and photo on the modal and display it
                     $("#matchName").text(data.name);
                     $("#matchPhoto").attr("src", data.photo);
                     $("#matchModal").modal("show");

@@ -3,6 +3,11 @@
 var express = require("express");
 var bodyParser = require("body-parser");
 var path = require("path");
+var fs = require("fs");
+
+// html routes
+var home = require("./app/routing/htmlRoutes.js");
+var survey = require("./app/routing/htmlRoutes.js");
 
 // Sets up the Express App
 // =============================================================
@@ -13,34 +18,28 @@ var PORT = process.env.PORT || 3000;
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
-// User Data
-// =============================================================
-var friends = [
-  {
-    name: "Yoda",
-    photo: "https://vignette.wikia.nocookie.net/starwars/images/d/d6/Yoda_SWSB.png/revision/latest?cb=20150206140125",
-    scores: [1,2,3,4,5,4,3,2,1,2]
-  },
-  {
-    name: "Darth Maul",
-    photo: "https://vignette.wikia.nocookie.net/starwars/images/7/79/Maul_SASWS_Forbes_Promo_HS.png/revision/latest?cb=20180909043811",
-    scores: [3,4,5,4,3,2,1,2,3,4]
-  },
-  {
-    name: "Obi Wan Kenobi",
-    photo: "https://vignette.wikia.nocookie.net/starwars/images/4/4e/ObiWanHS-SWE.jpg/revision/latest?cb=20111115052816",
-    scores: [5,4,3,2,1,2,3,4,5,4]
-  }
-];
+// Friend data
+var friends = [];
+
+// Get the friend data and put it in friends
+fs.readFile("./app/data/friends.js", "utf8", function(error, data) {
+
+    // If the code experiences any errors it will log the error to the console.
+    if (error) {
+      return console.log(error);
+    }
+    friends = JSON.parse(data);
+})
 
 // Routes
 // =============================================================
 
-// Basic route that sends the user first to the AJAX Page
+// Basic route that sends the user to the home page
 app.get("/", function(req, res) {
   res.sendFile(path.join(__dirname, "/app/public/home.html"));
 });
 
+// Survey route that sends the user to the survey page
 app.get("/survey", function(req, res) {
   res.sendFile(path.join(__dirname, "/app/public/survey.html"));
 });
@@ -50,15 +49,29 @@ app.get("/api/friends", function(req, res) {
     return res.json(friends);
   });
 
-// 
+// Gets the new friend data, call the findFriend fucntion, and sends back the best match
 app.post("/api/friends", function(req, res) {
-    console.log("hello");
-    console.log(req.body);
-
-    return res.json(friends[0]);
-    
-    
+    var index = findFriend(req.body);
+    return res.json(friends[index]);
 });
+
+// Searches the friends array for the best match
+function findFriend(newFriend) {
+    var score = 0;
+    var lowScore = 100;
+    var lowIndex = 0;
+    for (var i = 0; i < friends.length; i++) {
+        for (var j = 0; j < 10; j++) {
+            score = score + Math.abs(newFriend.scores[j] - friends[i].scores[j]);
+        }
+        if (score < lowScore) {
+            lowScore = score;
+            lowIndex = i;
+        }
+        score = 0;
+    }
+    return lowIndex;
+}
 
 // Starts the server to begin listening
 // =============================================================
