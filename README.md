@@ -12,7 +12,7 @@
     - Front and back ends
     
 - Friend_Finder Links
-    - Deployed: https://amcaron1.github.io/Friend_Finder/
+    - Deployed: https://friend-finder59.herokuapp.com/
     - GitHub repository: https://github.com/amcaron1/Friend_Finder/
 
 - Portfolio Links
