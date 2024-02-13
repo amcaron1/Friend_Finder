@@ -46,7 +46,7 @@
                             </div>
 
                             <div class="form-group">
-                                <label for="photo">Link to Photo (Required)</label>
+                                <label for="photo">Link to Photo</label>
                                 <input type="text" class="form-control" id="photo">
                             </div>
                         </div>
@@ -225,7 +225,7 @@
                 </button>
             </div>
             <div class="modal-body">
-                <p>Please fill out all fields and answer all questions before submitting</p>
+                <p>Please fill name and answer all questions before submitting</p>
             </div>
             <div class="modal-footer">
             </div>
@@ -269,8 +269,8 @@
             userData.name = $("#name").val().trim();
             userData.photo = $("#photo").val().trim();
             
-            // If user name or photo are blank, display error modal
-            if (userData.name == "" || userData.phone == "") {
+            // If user name is blank, display error modal
+            if (userData.name == "") {
                 validData = false;
                 console.log("error modal");
                 $("#errorModal").modal("show");

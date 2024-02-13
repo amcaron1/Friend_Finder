@@ -1,8 +1,7 @@
 # Friend_Finder
 
 Overview
-
-An application for finding a friend based on the answers to a survey.
+- An application for finding a friend based on the answers to a survey.
 
 Details
 - The home page welcomes the user to Friend Finder and offers a survey
@@ -20,14 +19,12 @@ Portfolio Links
 
 Skills
 - HTML
+- CSS
 - Bootstrap
 - JavaScript
 - jQuery
 - Node.js
 - Express.js
-
-Sub-skills
-- Modal
     
 Development Instructions
 - Open Bash and navigate to application folder
